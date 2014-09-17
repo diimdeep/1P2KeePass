@@ -1,4 +1,9 @@
-1P2KeePass Plugin for KeePass to import from 1Password Interchange Format (1pif).
+Plugin for KeePass 2.x to import from 1Password Interchange Format (1pif).
+
+Tested with 1Password 4.1.2 and KeePass 2.25
+
+
+#### Structure
 
 **PluginSrc** project is core of plugin, produces plugin .dll.  
 **Loader** project is for debugging. It is coping plugin .dll to KeePassDistribution\ where KeePass.exe should be located.  
@@ -7,15 +12,17 @@ In this project Properties on tab Debug you will need to change program path and
 
 **TestData** folder contains .1pif and .kdbx (password: test) for testing.
 
-
 #### Dependencies
 
 - Newtonsoft.Json 
 
+#### TODO
 
+- [ ] Support more types of records
+- [ ] Plugin Icon
+- [ ] Update Checking
+ 
 #### Status  
-
-Tested with 1Password 4.1.2 and KeePass 2.25
 
 
 |           Record type            |   What is it ?  | Parsing | Importing |
@@ -34,12 +41,6 @@ Tested with 1Password 4.1.2 and KeePass 2.25
 | Trashed   | Records in trash  | Done    | Done      |
 | Favorited | Favorited records |         |           |
 
-#### TODO
-
-- [ ] Support more types of records
-- [ ] Plugin Icon
-- [ ] Update Checking
- 
 
 
 [KeePass Plugin Development](http://keepass.info/help/v2_dev/plg_index.html)
