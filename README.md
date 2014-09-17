@@ -1,4 +1,4 @@
-# 1P2KeePass Plugin for KeePass to import from 1Passoword Interchange Format (1pif).
+# 1P2KeePass Plugin for KeePass to import from 1Password Interchange Format (1pif).
 
 *PluginSrc* project is core of plugin, produces plugin .dll.
 *Loader* project is for debugging. It is coping plugin .dll to KeePassDistribution\ where KeePass.exe should be located. 
