@@ -9,8 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Plugin for KeePass to import from 1Passoword Interchange Format (1pif).")]
 [assembly: AssemblyCompany("Dmitry Wolf (dmitrywolf.com)")]
 [assembly: AssemblyProduct("KeePass Plugin")]
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
+[assembly: AssemblyVersion("0.1.1.0")]
+[assembly: AssemblyFileVersion("0.1.1.0")]
 [assembly: Guid("5cd2a2f1-1e80-4bb6-85f0-03ee84fbdfe1")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
