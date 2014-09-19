@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\KeePassDistribution\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DateTimeExt.cs" />
+    <Compile Include="Common\StringExt.cs" />
     <Compile Include="Records\BaseRecord.cs" />
     <Compile Include="Records\ComputerLicenseRecord.cs" />
     <Compile Include="Records\CreditCardRecord.cs" />

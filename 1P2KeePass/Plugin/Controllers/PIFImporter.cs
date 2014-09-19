@@ -113,15 +113,15 @@ namespace _1Password2KeePass
 
 			entry.LastModificationTime = DateTimeExt.FromUnixTimeStamp(webForm.updatedAt);
 			
-			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(pwStorage.MemoryProtection.ProtectTitle, webForm.title));
-			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, webForm.location));
+			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(pwStorage.MemoryProtection.ProtectTitle, StringExt.GetValueOrEmpty(webForm.title)));
+			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, StringExt.GetValueOrEmpty(webForm.location)));
 			entry.Strings.Set(PwDefs.UserNameField,
 				new ProtectedString(pwStorage.MemoryProtection.ProtectUserName, webForm.secureContents.GetUsername()));
 			entry.Strings.Set(PwDefs.PasswordField,
 				new ProtectedString(pwStorage.MemoryProtection.ProtectPassword, webForm.secureContents.GetPassword()));
-			if (!string.IsNullOrEmpty(webForm.secureContents.notesPlain))
+			if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(webForm.secureContents.notesPlain)))
 				entry.Strings.Set(PwDefs.NotesField,
-					new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, webForm.secureContents.notesPlain));
+					new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(webForm.secureContents.notesPlain)));
 			
 			groupAddTo.AddEntry(entry, true);
 		}
@@ -131,16 +131,16 @@ namespace _1Password2KeePass
 			PwEntry entry = new PwEntry(true, true) { IconId = PwIcon.Warning };
 			entry.CreationTime = DateTimeExt.FromUnixTimeStamp(record.createdAt);
 			entry.LastModificationTime = DateTimeExt.FromUnixTimeStamp(record.updatedAt);
-			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(pwStorage.MemoryProtection.ProtectTitle, record.title));
-			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, record.location));
+			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(pwStorage.MemoryProtection.ProtectTitle, StringExt.GetValueOrEmpty(record.title)));
+			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, StringExt.GetValueOrEmpty(record.location)));
 			entry.Strings.Set(PwDefs.NotesField,
-				new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, record.typeName));
+				new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(record.typeName)));
 		}
 
 		private static PwGroup CreateFolder(PwGroup groupAddTo, FolderRecord folderRecord)
 		{
 			PwGroup folder = new PwGroup(true, true);
-			folder.Name = folderRecord.title;
+			folder.Name = StringExt.GetValueOrEmpty(folderRecord.title);
 			folder.CreationTime = DateTimeExt.FromUnixTimeStamp(folderRecord.createdAt);
 			folder.LastModificationTime = DateTimeExt.FromUnixTimeStamp(folderRecord.updatedAt);
 			groupAddTo.AddGroup(folder, true);

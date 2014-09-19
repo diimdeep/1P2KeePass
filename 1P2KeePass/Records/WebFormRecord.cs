@@ -33,21 +33,23 @@ namespace _1Password2KeePass
 
 		public  string GetUsername()
 		{
-			foreach (var field in Fields)
-			{
-				if (field.designation == "username")
-					return field.value;
-			}
+			if (Fields != null)
+				foreach (var field in Fields)
+				{
+					if (field.designation == "username")
+						return StringExt.GetValueOrEmpty(field.value);
+				}
 			return String.Empty;
 		}
 
 		public  string GetPassword()
 		{
-			foreach (var field in Fields)
-			{
-				if (field.designation == "password")
-					return field.value;
-			}
+			if (Fields != null)
+				foreach (var field in Fields)
+				{
+					if (field.designation == "password")
+						return StringExt.GetValueOrEmpty(field.value);
+				}
 			return String.Empty;
 		}
 	}
