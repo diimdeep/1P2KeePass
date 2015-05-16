@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using KeePassLib;
+using KeePassLib.Security;
 
 namespace _1Password2KeePass
 {
@@ -9,7 +11,26 @@ namespace _1Password2KeePass
 		[JsonProperty("secureContents")]
 		public WebFormSecureContents secureContents { get; set; }
 		public WebFormOpenContents openContents { get; set; }
-	}
+
+        public override PwEntry CreatePwEntry(PwDatabase pwStorage)
+        {
+            PwEntry entry = new PwEntry(true, true) { IconId = PwIcon.World };
+
+            entry.CreationTime = DateTimeExt.FromUnixTimeStamp(createdAt);
+
+            entry.LastModificationTime = DateTimeExt.FromUnixTimeStamp(updatedAt);
+
+            entry.Strings.Set(PwDefs.TitleField, new ProtectedString(pwStorage.MemoryProtection.ProtectTitle, StringExt.GetValueOrEmpty(title)));
+            entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, StringExt.GetValueOrEmpty(location)));
+            entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(pwStorage.MemoryProtection.ProtectUserName, secureContents.GetUsername()));
+            entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(pwStorage.MemoryProtection.ProtectPassword, secureContents.GetPassword()));
+
+            if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(secureContents.notesPlain)))
+                entry.Strings.Set(PwDefs.NotesField, new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(secureContents.notesPlain)));
+
+            return entry;
+        }
+    }
 
 	public class WebFormOpenContents
 	{
