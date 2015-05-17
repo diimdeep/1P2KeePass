@@ -12,7 +12,6 @@ namespace _1Password2KeePass
 
         public override PwEntry CreatePwEntry(PwDatabase pwStorage)
         {
-            return null;//TODO
             PwEntry entry = new PwEntry(true, true) { IconId = PwIcon.Key };
 
             entry.CreationTime = DateTimeExt.FromUnixTimeStamp(createdAt);

@@ -96,6 +96,10 @@ namespace _1Password2KeePass
 					ImportRecord(node, folder, pwStorage);
 				}
 			}
+            else if (record.GetType() == typeof(GeneratedPasswordRecord))
+            {
+                // Don't import generated passwords - these are just generated passwords without a username
+            }
             /*
             else if (record.GetType() == typeof(BaseRecord))
             {
@@ -108,8 +112,10 @@ namespace _1Password2KeePass
             */
             else
             {
+                // Let the record create a password entry:
                 PwEntry entry = record.CreatePwEntry(pwStorage);
 
+                // If the record has created an entry, then add it to the group. If no entry was returned, then that record type is not supported yet.
                 if (entry != null)
                     groupAddTo.AddEntry(entry, true);
                 //else
