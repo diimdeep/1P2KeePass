@@ -1,14 +1,22 @@
+# 1P2KeePass
+
 Plugin for KeePass 2.x to import from 1Password Interchange Format (1pif).
 
 This version created by exodusd works with more 1Password record types, including Secure Notes.
 
 Tested with 1Password 4.6.0 and KeePass 2.34.
 
-### Download & Install
+## Download & Install
 
 Download the plugin binary (.plgx file) by downloading the 1P2KeePass.plgx file on this repository.
 
 Install the plugin by copying the .plgx file you downloaded to your KeePass's plugins folder (e.g. C:\Program Files (x86)\KeePass Password Safe 2\Plugins).
+
+Please note that **this does not work for records with custom fields**! It will return a 'value out of bounds' error.
+
+Attachments and custom icons for each record will not be imported.
+
+## Plugin Development and Build Instructions
 
 ### Structure
 
@@ -33,27 +41,33 @@ Read [KeePass Plugin Development](http://keepass.info/help/v2_dev/plg_index.html
 - Newtonsoft.Json 
 - Visual Studio 2013 (IDE)
 
-### TODO
+### Todo
 
 - [ ] Support more types of records
 - [ ] Plugin Icon
 - [ ] Update Checking
  
-### Status  
+### Status
 
+Please note that **this does not work for records with custom fields**! It will return a 'value out of bounds' error.
 
-|           Record type            |   What is it ?  | Parsing | Importing |
-| -------------------------------- | --------------- | ------- | --------- |
-| system.folder.Regular            | Folder          | Done    | Done      |
-| webforms.WebForm                 | Bookmark        | Done    | Done      |
-| identities.Identity              | Contact         | Partial |           |
-| securenotes.SecureNote           | Secure Note     | Done    | Done      |
-| wallet.computer.License          | Sofware license | Partial |           |
-| wallet.financial.CreditCard      | CreditCard      | Partial |           |
-| wallet.government.DriversLicense |                 |         |           |
-| wallet.membership.RewardProgram  |                 |         |           |
+Attachments and custom icons for each record will not be imported.
 
-|  Records  |    What is it ?   | Parsing | Importing |
-| --------- | ----------------- | ------- | --------- |
-| Trashed   | Records in trash  | Done    | Done      |
-| Favorited | Favorited records |         |           |
+|           Record type            |   1Password Description   | Parse   |  Import   |
+| -------------------------------- | ------------------------- | ------- | --------- |
+| system.folder.Regular            | Folder                    | Done    | Done      |
+| webforms.WebForm                 | Bookmark                  | Done    | Done      |
+| securenotes.SecureNote           | Secure Note               | Done    | Done      |
+| wallet.computer.License          | Software License          | Partial | Partial   |
+| wallet.financial.CreditCard      | Credit Card               | Partial | Partial   |
+| wallet.government.DriversLicense | Driver's License          | Partial | Partial   |
+| passwords.Password               | Generated Password        | No      | No        |
+| wallet.membership.RewardProgram  | Rewards Program           | No      | No        |
+| identities.Identity              | Identity                  | No      | No        |
+
+|  Records   |    1Password Description              | Parse           | Import           |
+| ---------- | ------------------------------------- | -------------   | ---------------- |
+| Trashed    | Records in 1Password's trash          | Done            | Done             |
+| Favorited  | Records in 1Password's favorites menu |                 |                  |
+|Attachments | Files that are attached to a 1P record| No (Diff. File) | No (Diff. File)  |
+|Custom Field|Fields added to 1P records manually    | No (Error)      | No (Error)       |
