@@ -22,8 +22,8 @@ namespace _1Password2KeePass
             entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(pwStorage.MemoryProtection.ProtectUserName, StringExt.GetValueOrEmpty(secureContents.member_name)));
             entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(pwStorage.MemoryProtection.ProtectPassword, StringExt.GetValueOrEmpty(secureContents.membership_no)));
             entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, StringExt.GetValueOrEmpty(secureContents.website)));
-            entry.Strings.Set("Mitglied seit", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.member_since_mm).PadLeft(2, '0') + " / " + StringExt.GetValueOrEmpty(secureContents.member_since_yy).PadLeft(4, '0')));
-            entry.Strings.Set("Organisation", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.org_name)));
+            entry.Strings.Set("Member since", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.member_since_mm).PadLeft(2, '0') + " / " + StringExt.GetValueOrEmpty(secureContents.member_since_yy).PadLeft(4, '0')));
+            entry.Strings.Set("Organization", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.org_name)));
 
             if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(secureContents.notesPlain)))
                 entry.Strings.Set(PwDefs.NotesField, new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(secureContents.notesPlain)));

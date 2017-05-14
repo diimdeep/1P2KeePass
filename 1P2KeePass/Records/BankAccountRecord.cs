@@ -22,21 +22,21 @@ namespace _1Password2KeePass
             entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(pwStorage.MemoryProtection.ProtectUserName, StringExt.GetValueOrEmpty(secureContents.owner)));
             entry.Strings.Set("BIC/SWIFT", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.swift)));
             entry.Strings.Set("IBAN", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.iban)));
-            entry.Strings.Set("Kontonummer", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.accountNo)));
-            entry.Strings.Set("Bankleitzahl", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.routingNo)));
+            entry.Strings.Set("Account number", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.accountNo)));
+            entry.Strings.Set("Bank code", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.routingNo)));
             entry.Strings.Set("Bank", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.bankName)));
 
             if (!String.IsNullOrEmpty(secureContents.accountType))
-                entry.Strings.Set("Konto-Typ", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.accountType)));
+                entry.Strings.Set("Account type", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.accountType)));
 
             if (!String.IsNullOrEmpty(secureContents.telephonePin))
-                entry.Strings.Set("Telefon-PIN", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.telephonePin)));
+                entry.Strings.Set("Phone PIN", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.telephonePin)));
 
             if (!String.IsNullOrEmpty(secureContents.branchAddress))
-                entry.Strings.Set("Filiale", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.branchAddress)));
+                entry.Strings.Set("Branch address", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.branchAddress)));
 
             if (!String.IsNullOrEmpty(secureContents.branchPhone))
-                entry.Strings.Set("Filiale (Telefon)", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.branchPhone)));
+                entry.Strings.Set("Branch phone", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.branchPhone)));
 
             if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(secureContents.notesPlain)))
                 entry.Strings.Set(PwDefs.NotesField, new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(secureContents.notesPlain)));

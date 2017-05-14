@@ -24,22 +24,22 @@ namespace _1Password2KeePass
             entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, StringExt.GetValueOrEmpty(secureContents.server)));
 
             if (!String.IsNullOrEmpty(secureContents.network_name))
-                entry.Strings.Set("Netzwerkname", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.network_name)));
+                entry.Strings.Set("Network name", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.network_name)));
 
             if (!String.IsNullOrEmpty(secureContents.airport_id))
-                entry.Strings.Set("AirPort-ID", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.airport_id)));
+                entry.Strings.Set("AirPort ID", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.airport_id)));
 
             if (!String.IsNullOrEmpty(secureContents.wireless_security))
-                entry.Strings.Set("Netzwerksicherheit", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.wireless_security)));
+                entry.Strings.Set("Wireless security", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.wireless_security)));
 
             if (!String.IsNullOrEmpty(secureContents.name))
-                entry.Strings.Set("Name der Basisstation", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.name)));
+                entry.Strings.Set("Name of base station", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.name)));
 
             if (!String.IsNullOrEmpty(secureContents.password))
-                entry.Strings.Set("Passwort der Basisstation", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.password)));
+                entry.Strings.Set("Password of base station", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.password)));
 
             if (!String.IsNullOrEmpty(secureContents.disk_password))
-                entry.Strings.Set("Passwort für Netzwerk-Storage", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.disk_password)));
+                entry.Strings.Set("Password for network storage", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.disk_password)));
 
             if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(secureContents.notesPlain)))
                 entry.Strings.Set(PwDefs.NotesField, new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(secureContents.notesPlain)));

@@ -21,12 +21,12 @@ namespace _1Password2KeePass
             entry.Strings.Set(PwDefs.TitleField, new ProtectedString(pwStorage.MemoryProtection.ProtectTitle, StringExt.GetValueOrEmpty(title)));
             entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(pwStorage.MemoryProtection.ProtectUserName, StringExt.GetValueOrEmpty(secureContents.cardholder)));
             entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(pwStorage.MemoryProtection.ProtectPassword, StringExt.GetValueOrEmpty(secureContents.ccnum)));
-            entry.Strings.Set("Prüfcode", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.cvv)));
-            entry.Strings.Set("Gültig bis", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.expiry_mm).PadLeft(2, '0') + " / " + StringExt.GetValueOrEmpty(secureContents.expiry_yy).PadLeft(4, '0')));
+            entry.Strings.Set("Verification code", new ProtectedString(true, StringExt.GetValueOrEmpty(secureContents.cvv)));
+            entry.Strings.Set("Date of Expiry", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.expiry_mm).PadLeft(2, '0') + " / " + StringExt.GetValueOrEmpty(secureContents.expiry_yy).PadLeft(4, '0')));
             entry.Strings.Set("Bank", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.bank)));
 
             if (!String.IsNullOrEmpty(secureContents.phoneIntl))
-                entry.Strings.Set("Telefon", new ProtectedString(false, secureContents.phoneIntl));
+                entry.Strings.Set("Phone", new ProtectedString(false, secureContents.phoneIntl));
 
             if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(secureContents.notesPlain)))
                 entry.Strings.Set(PwDefs.NotesField, new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(secureContents.notesPlain)));

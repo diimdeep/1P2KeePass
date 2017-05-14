@@ -27,10 +27,10 @@ namespace _1Password2KeePass
                 entry.Strings.Set("Port", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.port)));
 
             if (!String.IsNullOrEmpty(secureContents.database))
-                entry.Strings.Set("Datenbank", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.database)));
+                entry.Strings.Set("Database", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.database)));
 
             if (!String.IsNullOrEmpty(secureContents.database_type))
-                entry.Strings.Set("Datenbank-Typ", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.database_type)));
+                entry.Strings.Set("Database type", new ProtectedString(false, StringExt.GetValueOrEmpty(secureContents.database_type)));
 
             if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(secureContents.notesPlain)))
                 entry.Strings.Set(PwDefs.NotesField, new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(secureContents.notesPlain)));
