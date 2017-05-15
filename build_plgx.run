@@ -1,0 +1,2 @@
+DEL /S /Q 1P2KeePass\obj
+KeePassDistribution\KeePass.exe --plgx-create 1P2KeePass\

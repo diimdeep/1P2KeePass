@@ -4,6 +4,7 @@ Tested with 1Password 4.1.2 and KeePass 2.27.
 
 Download binary [here](https://github.com/diimdeep/1P2KeePass/releases)
 
+## Dev
 
 ### Structure
 
@@ -24,8 +25,25 @@ Read [KeePass Plugin Development](http://keepass.info/help/v2_dev/plg_index.html
 
 ### Dependencies
 
+- .Net 2.0
 - Newtonsoft.Json 
-- VS 2013
+
+### macOS
+
+Build and run using [Mono 5](http://www.mono-project.com/docs/about-mono/releases/5.0.0/)
+
+Install Mono SDK `brew cask install mono-mdk` 
+
+```bash
+$ make <command>
+		update_deps # download libs
+		update_keepass # download keepass
+		build # build plugin as .dll
+		release # compile plugin as .plgx
+		distrib # zip .plgx
+		run_debug # run keepass with .plgx
+		run_release # run keepass with .dll
+```
 
 ### TODO
 
