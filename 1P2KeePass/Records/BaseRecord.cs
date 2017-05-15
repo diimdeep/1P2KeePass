@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using KeePassLib;
 
 namespace _1Password2KeePass
 {
@@ -10,7 +13,6 @@ namespace _1Password2KeePass
 		public string folderUuid { get; set; }
 
 		[JsonProperty("locationLKey")]
-		
 		public string locationKey { get; set; }
 		
 		public string location { get; set; }		
@@ -26,5 +28,10 @@ namespace _1Password2KeePass
 		public string securityLevel { get; set; }
 		
 		public string contentsHash { get; set; }
+
+        public virtual PwEntry CreatePwEntry(PwDatabase pwStorage)
+        {
+            return null;
+        }
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -52,7 +53,34 @@ namespace _1Password2KeePass
 					return new FolderRecord();
 				case "webforms.WebForm":
 					return new WebFormRecord();
-			}
+                case "wallet.financial.CreditCard":
+                    return new CreditCardRecord();
+                case "wallet.computer.License":
+                    return new ComputerLicenseRecord();
+                case "securenotes.SecureNote":
+                    return new SecureNoteRecord();
+                case "wallet.membership.Membership":
+                    return new MembershipRecord();
+                case "wallet.government.SsnUS":
+                    return new SocialSecurityNumberRecord();
+                case "wallet.onlineservices.GenericAccount":
+                    return new GenericAccountRecord();
+                case "wallet.financial.BankAccountUS":
+                    return new BankAccountRecord();
+                case "wallet.onlineservices.FTP":
+                    return new FtpAccountRecord();
+                case "wallet.computer.UnixServer":
+                    return new UnixServerRecord();
+                case "wallet.computer.Database":
+                    return new DatabaseConnectionRecord();
+                case "wallet.computer.Router":
+                    return new RouterRecord();
+                case "wallet.onlineservices.Email.v2":
+                    return new EmailAccountRecord();
+                case "passwords.Password":
+                    return new GeneratedPasswordRecord();
+            }
+            //Trace.WriteLine("Unknown type: " + type);
 
 			return new UnknownRecord();
 		}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using KeePassLib;
 using KeePassLib.Interfaces;
 using KeePassLib.Security;
@@ -43,7 +44,12 @@ namespace _1Password2KeePass
 				{
 					var wfrecord = trecord as WebFormRecord;
 					if (wfrecord != null)
-						CreateWebForm(trash, storage, wfrecord);
+                    {
+                        PwEntry entry = wfrecord.CreatePwEntry(storage);
+
+                        if (entry != null)
+                            trash.AddEntry(entry, true);
+                    }
 				}
 				root.AddGroup(trash, true);
 			}
@@ -90,40 +96,31 @@ namespace _1Password2KeePass
 					ImportRecord(node, folder, pwStorage);
 				}
 			}
-			else if (record.GetType() == typeof(WebFormRecord))
-			{
-				WebFormRecord webForm = (WebFormRecord)record;
-				CreateWebForm(groupAddTo, pwStorage, webForm);
-			}
-			else if (record.GetType() == typeof(BaseRecord))
-			{
-				//Trace.WriteLine(String.Format("Error. Can't import unknown record type: {0}", record.RawJson));
-			}
-			else if (record.GetType() == typeof(UnknownRecord))
-			{
-				//CreateUnknown(groupAddTo, pwStorage, record as UnknownRecord);
-			}
-		}
+            else if (record.GetType() == typeof(GeneratedPasswordRecord))
+            {
+                // Don't import generated passwords - these are just generated passwords without a username
+            }
+            /*
+            else if (record.GetType() == typeof(BaseRecord))
+            {
+                //Trace.WriteLine(String.Format("Error. Can't import unknown record type: {0}", record.RawJson));
+            }
+            else if (record.GetType() == typeof(UnknownRecord))
+            {
+                //CreateUnknown(groupAddTo, pwStorage, record as UnknownRecord);
+            }
+            */
+            else
+            {
+                // Let the record create a password entry:
+                PwEntry entry = record.CreatePwEntry(pwStorage);
 
-		private static void CreateWebForm(PwGroup groupAddTo, PwDatabase pwStorage, WebFormRecord webForm)
-		{
-			PwEntry entry = new PwEntry(true, true);
-
-			entry.CreationTime = DateTimeExt.FromUnixTimeStamp(webForm.createdAt);
-
-			entry.LastModificationTime = DateTimeExt.FromUnixTimeStamp(webForm.updatedAt);
-			
-			entry.Strings.Set(PwDefs.TitleField, new ProtectedString(pwStorage.MemoryProtection.ProtectTitle, StringExt.GetValueOrEmpty(webForm.title)));
-			entry.Strings.Set(PwDefs.UrlField, new ProtectedString(pwStorage.MemoryProtection.ProtectUrl, StringExt.GetValueOrEmpty(webForm.location)));
-			entry.Strings.Set(PwDefs.UserNameField,
-				new ProtectedString(pwStorage.MemoryProtection.ProtectUserName, webForm.secureContents.GetUsername()));
-			entry.Strings.Set(PwDefs.PasswordField,
-				new ProtectedString(pwStorage.MemoryProtection.ProtectPassword, webForm.secureContents.GetPassword()));
-			if (!string.IsNullOrEmpty(StringExt.GetValueOrEmpty(webForm.secureContents.notesPlain)))
-				entry.Strings.Set(PwDefs.NotesField,
-					new ProtectedString(pwStorage.MemoryProtection.ProtectNotes, StringExt.GetValueOrEmpty(webForm.secureContents.notesPlain)));
-			
-			groupAddTo.AddEntry(entry, true);
+                // If the record has created an entry, then add it to the group. If no entry was returned, then that record type is not supported yet.
+                if (entry != null)
+                    groupAddTo.AddEntry(entry, true);
+                //else
+                //    Trace.WriteLine("Entry could not be imported (did not return a valid entry): " + record.GetType().Name);
+            }
 		}
 
 		private static void CreateUnknown(PwGroup groupAddTo, PwDatabase pwStorage, UnknownRecord record)
@@ -146,5 +143,5 @@ namespace _1Password2KeePass
 			groupAddTo.AddGroup(folder, true);
 			return folder;
 		}
-	}
+    }
 }

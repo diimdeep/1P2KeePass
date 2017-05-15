@@ -47,11 +47,21 @@
   <ItemGroup>
     <Compile Include="Common\DateTimeExt.cs" />
     <Compile Include="Common\StringExt.cs" />
+    <Compile Include="Records\BankAccountRecord.cs" />
     <Compile Include="Records\BaseRecord.cs" />
     <Compile Include="Records\ComputerLicenseRecord.cs" />
     <Compile Include="Records\CreditCardRecord.cs" />
+    <Compile Include="Records\DatabaseConnectionRecord.cs" />
+    <Compile Include="Records\EmailAccountRecord.cs" />
     <Compile Include="Records\FolderRecord.cs" />
+    <Compile Include="Records\FtpAccount.cs" />
+    <Compile Include="Records\GeneratedPasswordRecord.cs" />
+    <Compile Include="Records\GenericAccount.cs" />
     <Compile Include="Records\IndentityRecord.cs" />
+    <Compile Include="Records\MembershipRecord.cs" />
+    <Compile Include="Records\RouterRecord.cs" />
+    <Compile Include="Records\SocialSecurityNumberRecord.cs" />
+    <Compile Include="Records\UnixServerRecord.cs" />
     <Compile Include="Records\UnknownRecord.cs" />
     <Compile Include="Plugin\Controllers\JsonObjectToRecordConverter.cs" />
     <Compile Include="Records\WebFormRecord.cs" />
