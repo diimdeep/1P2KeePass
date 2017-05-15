@@ -1,16 +1,14 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using _1Password2KeePass.Properties;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
 [assembly: AssemblyTitle("1P2KeePass")]
-[assembly: AssemblyDescription("Plugin for KeePass to import from 1Passoword Interchange Format (1pif).")]
+[assembly: AssemblyDescription(VersionInfo.AssemblyDescription)]
 [assembly: AssemblyCompany("Dmitry Wolf (dmitrywolf.com)")]
 [assembly: AssemblyProduct("KeePass Plugin")]
-[assembly: AssemblyVersion("0.1.2.0")]
-[assembly: AssemblyFileVersion("0.1.2.0")]
+[assembly: AssemblyVersion("0.2.0.0")]
+[assembly: AssemblyFileVersion("0.2.0.0")]
 [assembly: Guid("5cd2a2f1-1e80-4bb6-85f0-03ee84fbdfe1")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
