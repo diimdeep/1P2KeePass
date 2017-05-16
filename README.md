@@ -56,11 +56,6 @@ $ make <command>
 		run_release # run keepass with .dll
 ```
 
-### TODO
-
-- [ ] Support more types of records
-- [ ] Update Checking
- 
 ### Status
 
 Tested with 1Password 4.6.0 and KeePass 2.35
@@ -87,3 +82,21 @@ Attachments and custom icons for each record will not be imported.
 | Favorited  | Records in 1Password's favorites menu |                 |                  |
 |Attachments | Files that are attached to a 1P record| No (Diff. File) | No (Diff. File)  |
 |Custom Field|Fields added to 1P records manually    | No (Error)      | No (Error)       |
+
+
+#### Import test 1Password 6.7.1
+
+Result 39/45  
+
+- Records not imported
+    + Driver's License (Driver Licenses)
+    + Hilton HHonors (Reward programs)
+    + Business Identity (Identities)
+    + Forums (Identities)
+    + Garage Door Code (Passwords)
+    + Personal Identity (Identities)
+- Fields not imported
+    + WebMD (Logins)
+        * Field: website 2
+        # Fields: web form details
+        # Fields: previously used passwords
