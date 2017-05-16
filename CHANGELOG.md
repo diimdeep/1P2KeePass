@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.2.1] - 16-05-2017
+## Changed
+- Fix timestamp represented as millis #2
+
 ## [0.2.0] - 15-05-2017
 ### Added
 -  Support for multiple record types (bank account, database connection, email account, ftp account, generated passwords, generic account, membership, router, social security number, unix server) and extended some of the existing ones (computer license, credit card, secure note). [3dc1fae0e7368d2cd14d75a0776acbb5016d9e53] exodusd <exodusd@gmx.de>
