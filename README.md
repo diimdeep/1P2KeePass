@@ -98,5 +98,5 @@ Result 39/45
 - Fields not imported
     + WebMD (Logins)
         * Field: website 2
-        # Fields: web form details
-        # Fields: previously used passwords
+        * Fields: web form details
+        * Fields: previously used passwords

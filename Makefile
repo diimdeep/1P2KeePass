@@ -42,3 +42,5 @@ run_release:
 	cp 1P2KeePass.plgx KeePassDistribution/1P2KeePass.plgx
 	mono KeePassDistribution/KeePass.exe TestData/Test.kdbx
 
+publish:
+	hub release create -d -m $(shell ./get_version.sh) -a $(shell ./get_version.sh)".zip" $(shell ./get_version.sh)
