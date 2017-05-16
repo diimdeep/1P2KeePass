@@ -7,8 +7,8 @@ using _1Password2KeePass.Properties;
 [assembly: AssemblyDescription(VersionInfo.AssemblyDescription)]
 [assembly: AssemblyCompany("Dmitry Wolf (dmitrywolf.com)")]
 [assembly: AssemblyProduct("KeePass Plugin")]
-[assembly: AssemblyVersion("0.2.0.0")]
-[assembly: AssemblyFileVersion("0.2.0.0")]
+[assembly: AssemblyVersion("0.2.1.0")]
+[assembly: AssemblyFileVersion("0.2.1.0")]
 [assembly: Guid("5cd2a2f1-1e80-4bb6-85f0-03ee84fbdfe1")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
