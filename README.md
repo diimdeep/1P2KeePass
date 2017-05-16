@@ -1,6 +1,6 @@
 # 1P2KeePass
 
-Plugin for KeePass 2.x to import from 1Password Interchange Format (1pif)..
+Plugin for KeePass 2.x to import from 1Password Interchange Format (1pif).
 
 
 ## Download & Install
