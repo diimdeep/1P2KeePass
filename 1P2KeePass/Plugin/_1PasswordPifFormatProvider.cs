@@ -3,6 +3,7 @@ using System.IO;
 using KeePass.DataExchange;
 using KeePassLib;
 using KeePassLib.Interfaces;
+using System.Windows.Forms;
 
 namespace _1Password2KeePass
 {
@@ -54,8 +55,14 @@ namespace _1Password2KeePass
 		public override void Import(PwDatabase storage, Stream input, IStatusLogger status)
 		{
 			status.SetText("Parsing .pif ...", LogStatusType.Info);
+            var res = MessageBox.Show("Create seperate subfolders for each 1PW category (like Logins, Accounts ...)?","Create Subfolders?",MessageBoxButtons.YesNo);
+            bool createSubfolder = false;
+            if ( res == DialogResult.Yes)
+            {
+                createSubfolder = true;
+            }
 			List<BaseRecord> baseRecords = _pifParser.Parse(input);
-			_pifImporter.Import(baseRecords, storage, status);
+			_pifImporter.Import(baseRecords, storage, status, createSubfolder);
 		}
 	}
 }
