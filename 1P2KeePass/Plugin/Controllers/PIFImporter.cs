@@ -7,34 +7,119 @@ using KeePassLib.Security;
 
 namespace _1Password2KeePass
 {
+    public class subfolder
+    {
+        public subfolder() { }
+
+        public String folderName { get; set; }
+        public PwIcon folderIcon { get; set; }
+        public List<BaseRecord> recordList { get; set; }
+    }
+
 	public class PIFImporter
 	{
-		public void Import(List<BaseRecord> baseRecords, PwDatabase storage, IStatusLogger status)
+        public void Import(List<BaseRecord> baseRecords, PwDatabase storage, IStatusLogger status, bool createSubfolders = false)
 		{
-			var records = new List<BaseRecord>();
-			var trashedRecords = new List<BaseRecord>();
 
-			baseRecords.ForEach(record =>
+        var loginRecords = new List<BaseRecord>();
+            var walletRecords = new List<BaseRecord>();
+            var accountsRecords = new List<BaseRecord>();
+            var softwareRecords = new List<BaseRecord>();
+            var secureNoteRecords = new List<BaseRecord>();
+            var identityRecords = new List<BaseRecord>();
+            var RecordsList = new List<subfolder>();
+
+            var records = new List<BaseRecord>();
+            var trashedRecords = new List<BaseRecord>();
+
+            if ( createSubfolders)
+            {
+                RecordsList.Add(new subfolder { folderName = "Logins", folderIcon = PwIcon.World, recordList = loginRecords });
+                RecordsList.Add(new subfolder { folderName = "Wallet", folderIcon = PwIcon.Money, recordList = walletRecords });
+                RecordsList.Add(new subfolder { folderName = "Accounts", folderIcon = PwIcon.NetworkServer, recordList = accountsRecords });
+                RecordsList.Add(new subfolder { folderName = "Software", folderIcon = PwIcon.MultiKeys, recordList = softwareRecords });
+                RecordsList.Add(new subfolder { folderName = "Secure Notes", folderIcon = PwIcon.Notepad, recordList = secureNoteRecords });
+                RecordsList.Add(new subfolder { folderName = "identites", folderIcon = PwIcon.Identity, recordList = identityRecords });
+            }
+
+            baseRecords.ForEach(record =>
 			{
 				if (record.trashed)
+                {
 					trashedRecords.Add(record);
+                }
 				else
-					records.Add(record);
+                {
+                    if (!createSubfolders)
+                    {
+                        records.Add(record);
+                    }
+                    else
+                    { 
+                        if (record.GetType() == typeof(WebFormRecord))
+                        {
+                            loginRecords.Add(record);
+                        }
+                        else if (  record.GetType() == typeof(BankAccountRecord)
+                                || record.GetType() == typeof(CreditCardRecord)
+                                || record.GetType() == typeof(MembershipRecord)
+                                || record.GetType() == typeof(SocialSecurityNumberRecord) )
+                        {
+                            walletRecords.Add(record);
+                        }
+                        else if (  record.GetType() == typeof(DatabaseConnectionRecord)
+                                || record.GetType() == typeof(EmailAccountRecord)
+                                || record.GetType() == typeof(FtpAccountRecord)
+                                || record.GetType() == typeof(GenericAccountRecord)
+                                || record.GetType() == typeof(UnixServerRecord)
+                                || record.GetType() == typeof(RouterRecord) )
+                        {
+                            accountsRecords.Add(record);
+                        }
+                        else if (record.GetType() == typeof(ComputerLicenseRecord))
+                        {
+                            softwareRecords.Add(record);
+                        }
+                        else if (record.GetType() == typeof(SecureNoteRecord))
+                        {
+                            secureNoteRecords.Add(record);
+                        }
+                        else if (record.GetType() == typeof(IndentityRecord))
+                        {
+                            identityRecords.Add(record);
+                        }
+                    }
+                }
 			});
 
-
-			var tree = BuildTree(records);
-
 			status.SetText("Importing records..", LogStatusType.Info);
-			
 			PwGroup root = new PwGroup(true, true);
 			root.Name = "1Password Import on " + DateTime.Now.ToString();
 
+            if ( createSubfolders)
+            {
+                foreach ( var category in RecordsList)
+                {
+                    PwGroup categoryGroup = new PwGroup(true, true);
+                    categoryGroup.Name = category.folderName;
+                    categoryGroup.IconId = category.folderIcon;
 
-			foreach (var node in tree)
-			{
-				ImportRecord(node, root, storage);
-			}
+                    var tree = BuildTree(category.recordList);
+			        foreach (var node in tree)
+			        {
+				        ImportRecord(node, categoryGroup, storage);
+			        }
+                    root.AddGroup(categoryGroup, true);
+                }
+            }
+            else
+            {
+                var tree = BuildTree(records);
+                foreach (var node in tree)
+                {
+                    ImportRecord(node, root, storage);
+                }
+            }
 
 			if (trashedRecords.Count > 0)
 			{

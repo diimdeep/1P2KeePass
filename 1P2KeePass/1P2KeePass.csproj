@@ -43,6 +43,7 @@
       <HintPath>Newtonsoft.Json.dll</HintPath>
       <IncludeInPackage>false</IncludeInPackage>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DateTimeExt.cs" />

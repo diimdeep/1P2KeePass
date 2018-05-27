@@ -2,7 +2,7 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
-    <StartProgram>Y:\Projects\Plugin.1P2KeePass\KeePassDistribution\KeePass.exe</StartProgram>
-    <StartWorkingDirectory>Y:\Projects\Plugin.1P2KeePass\KeePassDistribution\</StartWorkingDirectory>
+    <StartProgram>D:\Dev\git\1P2KeePass\KeePassDistribution\KeePass.exe</StartProgram>
+    <StartWorkingDirectory>D:\Dev\git\1P2KeePass\KeePassDistribution\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>
