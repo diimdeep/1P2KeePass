@@ -11,6 +11,18 @@ Please note that **this does not work for records with custom fields**! It will 
 
 Attachments and custom icons for each record will not be imported.
 
+#### Chocolatey 📦 
+Or you can [use Chocolatey to install](https://community.chocolatey.org/packages/keepass-plugin-1p2kp#install) it in a more automated manner:
+
+```
+choco install keepass-plugin-1p2kp
+```
+
+To [upgrade KeePass Plugin 1P2KeePass](https://community.chocolatey.org/packages/keepass-plugin-1p2kp#upgrade) to the [latest release version](https://community.chocolatey.org/packages/keepass-plugin-1p2kp#versionhistory) for enjoying the newest features, run the following command from the command line or from PowerShell:
+
+```
+choco upgrade keepass-plugin-1p2kp
+```
 
 ## Plugin Development
 
